@@ -6,15 +6,18 @@ const URL =
   "https://api.openweathermap.org/data/2.5/weather?APPID=" +
   apiKey +
   "&units=metric&q=";
-
 var city="Pisa";
-
 const tick = interval(10000);
-
-tick.subscribe( (n) => { 
+//Costruisco l'observable
+const temp = new Observable(subscriber => tick.subscribe( (n) => { 
     fetch(URL + city)
       .then(response =>  response.json())
         .then(data => 
-          document.getElementById("output").innerHTML+=data.main.temp+"<br>");
+          subscriber.next(data.main.temp));
   }
-); //Costruisco l'observable
+)
+); 
+// Un subscriber
+temp.subscribe({   
+  next(x) {console.log(x);}
+})
