@@ -9,12 +9,12 @@ const URL =
 var city="Pisa";
 const tick = interval(10000);
 //Costruisco l'observable
-const temp = new Observable(subscriber => tick.subscribe( (n) => { 
+const temp = new Observable(subscriber => tick.subscribe( { next(n) { 
     fetch(URL + city)
       .then(response =>  response.json())
         .then(data => 
           subscriber.next(data.main.temp));
-  }
+  } }
 )
 ); 
 // Un subscriber
