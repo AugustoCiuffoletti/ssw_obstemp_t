@@ -14,10 +14,11 @@ const temp = new Observable(subscriber => tick.subscribe( { next(n) {
       .then(response =>  response.json())
         .then(data => 
           subscriber.next(data.main.temp));
-  } }
-)
-); 
-// Un subscriber
+  } } ) ); 
+// Due subscriber
 temp.subscribe({   
   next(x) {console.log(x);}
+})
+temp.subscribe({   
+  next(x) {document.getElementById("output").innerText=x;}
 })
