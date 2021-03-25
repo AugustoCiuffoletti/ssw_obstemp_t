@@ -20,5 +20,5 @@ temp.subscribe({
   next(x) {console.log(x);}
 })
 temp.subscribe({   
-  next(x) {document.getElementById("output").innerText=x;}
+  next(x) {document.getElementById("output").innerHTML+=x+"<br>";}
 })
