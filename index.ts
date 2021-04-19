@@ -1,4 +1,3 @@
-import { ajax } from 'rxjs/ajax';
 import { Observable, interval } from "rxjs";
 
 const apiKey = "9bd419b49d4261031516ad5fddac3439";
