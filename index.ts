@@ -1,6 +1,6 @@
 import { Observable, interval } from 'rxjs';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
-const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
+const apiKey = '0475be3a1967b1b49dfc02c8128001a';
 const URL =
   'https://api.openweathermap.org/data/2.5/weather?APPID=' +
   apiKey +
@@ -25,8 +25,8 @@ tick.subscribe({
   next: (x) => {
     obs.subscribe({
       next: (res: AjaxResponse) =>
-        (document.getElementById('output').innerHTML +=
-          res.response.main.temp + '<br>'),
+        document.getElementById('output').innerHTML +=
+          res.response.main.temp + '<br>',
       error: (err: Error) => console.error(err.message),
     });
   },
