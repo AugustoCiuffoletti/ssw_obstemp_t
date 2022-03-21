@@ -1,29 +1,33 @@
 import { Observable, interval } from 'rxjs';
-
+import { ajax, AjaxResponse } from 'rxjs/ajax';
 const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
 const URL =
   'https://api.openweathermap.org/data/2.5/weather?APPID=' +
   apiKey +
   '&units=metric&q=';
 var city = 'Pisa';
+const obs = ajax(URL + city);
+//obs.subscribe({
+//  next: (res: AjaxResponse) => res.response.main.temp,
+//  error: (err: Error) => console.error(err.message),
+//});
 const tick = interval(10000);
-const temp = new Observable((subscriber) =>
-  tick.subscribe({
-    next: () => {
-      fetch(URL + city)
-        .then((response) => response.json())
-        .then((data) => subscriber.next(data.main.temp));
-    },
-  })
-);
 // Due subscriber
-temp.subscribe({
+tick.subscribe({
   next: (x) => {
-    console.log(x);
+    obs.subscribe({
+      next: (res: AjaxResponse) => console.log(res.response.main.temp),
+      error: (err: Error) => console.error(err.message),
+    });
   },
 });
-temp.subscribe({
+tick.subscribe({
   next: (x) => {
-    document.getElementById('output').innerHTML += x + '<br>';
+    obs.subscribe({
+      next: (res: AjaxResponse) =>
+        (document.getElementById('output').innerHTML +=
+          res.response.main.temp + '<br>'),
+      error: (err: Error) => console.error(err.message),
+    });
   },
 });
