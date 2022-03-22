@@ -6,12 +6,12 @@ const URL =
   apiKey +
   '&units=metric&q=';
 var city = 'Pisa';
-const tick = interval(10000);
-const temp = new Observable((subscriber) =>
+const tick: Observable<number> = interval(10000);
+const temp: Observable<any> = new Observable((subscriber) =>
   tick.subscribe({
     next: () => {
       fetch(URL + city)
-        .then((response) => response.json() )
+        .then((response) => response.json())
         .then((data) => subscriber.next(data.main.temp));
     },
   })
