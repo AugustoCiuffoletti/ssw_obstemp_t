@@ -13,7 +13,7 @@ const tick = interval(10000);
 tick.subscribe({
   next: (x) => {
     obs.subscribe({
-      next: (res: AjaxResponse) => console.log(res.response.main.temp),
+      next: (res: AjaxResponse<any>) => console.log(res.response.main.temp),
       error: (err: Error) => console.error("Sorry: ",err.message),
     });
   },
@@ -21,7 +21,7 @@ tick.subscribe({
 tick.subscribe({
   next: (x) => {
     obs.subscribe({
-      next: (res: AjaxResponse) =>
+      next: (res: AjaxResponse<any>) =>
         document.getElementById('output').innerHTML +=
           res.response.main.temp + '<br>',
       error: (err: Error) => console.error("Uela! " + err.message),
