@@ -18,12 +18,8 @@ const temp: Observable<any> = new Observable((subscriber) =>
 );
 // Due subscriber
 temp.subscribe({
-  next: (x) => {
-    console.log(x);
-  },
+  next: (x) => console.log(x),
 });
 temp.subscribe({
-  next: (x) => {
-    document.getElementById('output').innerHTML += x + '<br>';
-  },
+  next: (x) => (document.getElementById('output').innerHTML += x + '<br>'),
 });
