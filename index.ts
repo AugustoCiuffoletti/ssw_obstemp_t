@@ -8,10 +8,6 @@ const URL =
   '&units=metric&q=';
 var city = 'Viterbo';
 const obs = ajax(URL + city);
-//obs.subscribe({
-//  next: (res: AjaxResponse) => res.response.main.temp,
-//  error: (err: Error) => console.error(err.message),
-//});
 const tick = interval(10000);
 // Due subscriber
 tick.subscribe({
