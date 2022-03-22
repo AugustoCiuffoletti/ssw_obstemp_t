@@ -7,8 +7,8 @@ const URL =
   apiKey +
   '&units=metric&q=';
 var city = 'Viterbo';
-const obs = ajax(URL + city);
-const tick = interval(10000);
+const obs: Observable<AjaxResponse<any>> = ajax(URL + city);
+const tick: Observable<number> = interval(10000);
 // Due subscriber
 tick.subscribe({
   next: (x) => {
