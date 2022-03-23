@@ -18,10 +18,8 @@ const obs: Observable<any> = new Observable((subscriber) =>
           subscriber.next(res.response.main.temp),
         error: (err: AjaxError) => console.error('Error: ', err.request) }) } }) );
 obs.subscribe({ // Primo subscriber
-  next: (x) => console.log(x),
-  error: (err: AjaxError) => console.error('Error: ', err.request),
+  next: (x) => console.log(x)
 });
 obs.subscribe({ // Secondo subscriber
-  next: (x) => (document.getElementById('output').innerHTML += x + '<br>'),
-  error: (err: AjaxError) => console.error('Error: ', err.request),
+  next: (x) => (document.getElementById('output').innerHTML += x + '<br>')
 });
