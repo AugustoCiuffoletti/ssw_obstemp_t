@@ -13,11 +13,12 @@ const tick: Observable<number> = interval(10000);
 tick.subscribe({ // Primo subscriber
   next: (x) => {
     temp.subscribe({
-      next: (res: AjaxResponse<any>) => console.log(res.response.main.temp),
-      error: (err: AjaxError) => console.error('Sorry: ', err.request) }) } });
+      next: (res: AjaxResponse<any>) => 
+        console.log(res.response.main.temp),
+      error: (err: AjaxError) => console.error('Error: ', err.request) }) } });
 tick.subscribe({ // Secondo subscriber
   next: (x) => {
     temp.subscribe({
       next: (res: AjaxResponse<any>) =>
         (document.getElementById('output').innerHTML += res.response.main.temp + '<br>'),
-      error: (err: AjaxError) => console.error('Uela! ', err.request) }) } });
+      error: (err: AjaxError) => console.error('Error: ', err.request) }) } });
