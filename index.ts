@@ -19,6 +19,5 @@ tick.subscribe({ // Secondo subscriber
   next: (x) => {
     temp.subscribe({
       next: (res: AjaxResponse<any>) =>
-        (document.getElementById('output').innerHTML +=
-          res.response.main.temp + '<br>'),
+        (document.getElementById('output').innerHTML += res.response.main.temp + '<br>'),
       error: (err: AjaxError) => console.error('Uela! ', err.request) }) } });
