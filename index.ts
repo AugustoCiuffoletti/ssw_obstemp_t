@@ -6,8 +6,7 @@ const URL =
 var city = 'Pisa';
 const request: AjaxRequest = {
   url: URL + city,
-  crossDomain: true,
-};
+  crossDomain: true };
 const temp: Observable<AjaxResponse<any>> = ajax(request);
 const tick: Observable<number> = interval(10000);
 tick.subscribe({ // Primo subscriber
