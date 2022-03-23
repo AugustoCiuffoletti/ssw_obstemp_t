@@ -1,4 +1,3 @@
-// Mi spiace non funziona...
 import { Observable, interval } from 'rxjs';
 import { ajax, AjaxResponse, AjaxError } from 'rxjs/ajax';
 const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
