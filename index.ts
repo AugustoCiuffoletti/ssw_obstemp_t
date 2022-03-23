@@ -1,6 +1,6 @@
 // Mi spiace non funziona...
 import { Observable, interval } from 'rxjs';
-import { ajax, AjaxResponse } from 'rxjs/ajax';
+import { ajax, AjaxResponse, AjaxError } from 'rxjs/ajax';
 const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
 const URL =
   'https://api.openweathermap.org/data/2.5/weather?APPID=' +
@@ -14,7 +14,7 @@ tick.subscribe({
   next: (x) => {
     obs.subscribe({
       next: (res: AjaxResponse<any>) => console.log(res.response.main.temp),
-      error: (err: Error) => console.error("Sorry: ",err.message),
+      error: (err: AjaxError) => console.error('Sorry: ', err.request),
     });
   },
 });
@@ -22,9 +22,9 @@ tick.subscribe({
   next: (x) => {
     obs.subscribe({
       next: (res: AjaxResponse<any>) =>
-        document.getElementById('output').innerHTML +=
-          res.response.main.temp + '<br>',
-      error: (err: Error) => console.error("Uela! " + err.message),
+        (document.getElementById('output').innerHTML +=
+          res.response.main.temp + '<br>'),
+      error: (err: AjaxError) => console.error('Uela! ', err.request),
     });
   },
 });
