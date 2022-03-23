@@ -14,6 +14,7 @@ const temp: Observable<any> = new Observable((subscriber) =>
         .then((response) => response.json())
         .then((data) => subscriber.next(data.main.temp));
     },
+    error: (err) => console.log ("C'è un errore", err)
   })
 );
 // Due subscriber
