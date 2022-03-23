@@ -14,9 +14,9 @@ const temp: Observable<any> = new Observable((subscriber) =>
     error: (err) => console.log('Errore: ', err),
   })
 );
-temp.subscribe({
+temp.subscribe({ // Primo subscriber
   next: (x) => console.log(x),
 });
-temp.subscribe({
+temp.subscribe({ // Secondo subscriber
   next: (x) => (document.getElementById('output').innerHTML += x + '<br>'),
 });
