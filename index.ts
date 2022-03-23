@@ -11,12 +11,12 @@ const request: AjaxRequest = {
   crossDomain: true,
 };
 
-const obs: Observable<AjaxResponse<any>> = ajax(request);
+const temp: Observable<AjaxResponse<any>> = ajax(request);
 const tick: Observable<number> = interval(10000);
 // Due subscriber
 tick.subscribe({
   next: (x) => {
-    obs.subscribe({
+    temp.subscribe({
       next: (res: AjaxResponse<any>) => console.log(res.response.main.temp),
       error: (err: AjaxError) => console.error('Sorry: ', err.request),
     });
@@ -24,7 +24,7 @@ tick.subscribe({
 });
 tick.subscribe({
   next: (x) => {
-    obs.subscribe({
+    temp.subscribe({
       next: (res: AjaxResponse<any>) =>
         (document.getElementById('output').innerHTML +=
           res.response.main.temp + '<br>'),
