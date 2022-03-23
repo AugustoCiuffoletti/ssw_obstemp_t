@@ -1,5 +1,4 @@
 import { Observable, interval } from 'rxjs';
-
 const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
 const URL =
   'https://api.openweathermap.org/data/2.5/weather?APPID=' + apiKey + '&units=metric&q=';
@@ -15,7 +14,6 @@ const temp: Observable<any> = new Observable((subscriber) =>
     error: (err) => console.log('Errore: ', err),
   })
 );
-// Due subscriber
 temp.subscribe({
   next: (x) => console.log(x),
 });
