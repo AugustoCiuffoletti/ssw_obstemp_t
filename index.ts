@@ -9,14 +9,16 @@ const request: AjaxRequest = {
   crossDomain: true };
 const temp: Observable<AjaxResponse<any>> = ajax(request);
 const tick: Observable<number> = interval(10000);
-tick.subscribe({ // Primo subscriber
-  next: (x) => {
+const obs: Observable<any> = new Observable((subscriber) =>
+tick.subscribe({
+next: () => {
     temp.subscribe({
-      next: (res: AjaxResponse<any>) => console.log(res.response.main.temp),
-      error: (err: AjaxError) => console.error('Error: ', err.request) }) } });
-tick.subscribe({ // Secondo subscriber
-  next: (x) => {
-    temp.subscribe({
-      next: (res: AjaxResponse<any>) =>
-        (document.getElementById('output').innerHTML += res.response.main.temp + '<br>'),
-      error: (err: AjaxError) => console.error('Error: ', err.request) }) } });
+      next: (res: AjaxResponse<any>) => subscriber.next(res.response.main.temp),
+      error: (err: AjaxError) => console.error('Error: ', err.request) 
+    })
+  }
+}));
+obs.subscribe({ // Secondo subscriber
+  next: (x) => (document.getElementById('output').innerHTML += x + '<br>'),
+  error: (err: AjaxError) => console.error('Error: ', err.request)
+})
