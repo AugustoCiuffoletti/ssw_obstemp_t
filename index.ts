@@ -17,10 +17,8 @@ const temp: Observable<any> = new Observable((subscriber) =>
   })
 );
 temp.subscribe({
-  // Primo subscriber
   next: (x) => console.log(x),
 });
 temp.subscribe({
-  // Secondo subscriber
   next: (x) => (document.getElementById('output').innerHTML += x + '<br>'),
 });
