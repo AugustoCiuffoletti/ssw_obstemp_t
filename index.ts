@@ -1,8 +1,7 @@
 import { Observable, interval } from 'rxjs';
 import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
 const apiKey = 'd0475be3a1967b1b49dfc02c8128001a';
-const URL =
-  'https://api.openweathermap.org/data/2.5/weather?APPID=' + apiKey + '&units=metric&q=';
+const URL = 'https://api.openweathermap.org/data/2.5/weather?APPID=' + apiKey +  '&units=metric&q=';
 var city = 'Pisa';
 const request: AjaxRequest = {
   url: URL + city,
@@ -16,10 +15,10 @@ const obs: Observable<any> = new Observable((subscriber) =>
       temp.subscribe({
         next: (res: AjaxResponse<any>) =>
           subscriber.next(res.response.main.temp),
-        error: (err: AjaxError) => console.error('Error: ', err.request) }) } }) );
-obs.subscribe({ // Primo subscriber
-  next: (x) => console.log(x)
-});
-obs.subscribe({ // Secondo subscriber
-  next: (x) => (document.getElementById('output').innerHTML += x + '<br>')
-});
+        error: (err: AjaxError) => console.error('Error: ', err.request),
+      });
+    },
+  })
+);
+obs.subscribe({ next: (x) => console.log(x) });
+obs.subscribe({ next: (x) => (document.getElementById('output').innerHTML += x + '<br>') });
